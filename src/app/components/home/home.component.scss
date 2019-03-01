@@ -11,9 +11,9 @@ span, a {
 	text-align:center;
 	width: 100vw;
 	min-height: 100vh;
-	background-image: url("../../../assets/retro1.jpg");
+	background-image: url("../../../assets/retro5.gif");
 	background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 125%;
 }
 
 .fill-remaining-space {
@@ -21,7 +21,6 @@ span, a {
 }
 
 .content {
-	width: 40vw;
 	height: 85vh;
 }
 
