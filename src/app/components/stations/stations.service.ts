@@ -19,11 +19,19 @@ export class StationsService {
 	};
 
   	constructor(private http: HttpClient, private configuration: Configuration) {
-  		this.apiURL = configuration.server + 'stations';
+  		this.apiURL = configuration.server;
   	}
 
   	getStations(): Observable<Station> {
-	    return this.http.get<Station>(this.apiURL)
+	    return this.http.get<Station>(this.apiURL + 'stations')
+	    .pipe(
+	      retry(1),
+	      catchError(this.handleError)
+	    )
+	}
+
+	getStation(source): Observable<Station> {
+	    return this.http.get<Station>(this.apiURL + 'station?source=' + source)
 	    .pipe(
 	      retry(1),
 	      catchError(this.handleError)

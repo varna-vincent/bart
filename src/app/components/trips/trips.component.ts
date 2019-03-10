@@ -10,9 +10,10 @@ import { TripsService } from './trips.service';
 
 export class TripsComponent implements OnInit {
 	
-  @Input() station = { source: {}, destination: {} }
+  @Input() stationsSelected = { source: {}, destination: {} }
 
   public stations: any = [];
+  public station: any = [];
   public schedule: any = [];
 
   constructor(private stationsService: StationsService, private tripsService: TripsService) {} 
@@ -31,8 +32,16 @@ export class TripsComponent implements OnInit {
 
   // Get trips list
   getTrips() {
-    return this.tripsService.getTrips(this.station.source.abbr, this.station.destination.abbr).subscribe((data: {}) => {
+    return this.tripsService.getTrips(this.stationsSelected.source.abbr, this.stationsSelected.destination.abbr).subscribe((data: {}) => {
       this.schedule = data;
+      console.log(data);
+    })
+  }
+
+  // Get source station info
+  getStationInfo() {
+    return this.stationsService.getStation(this.stationsSelected.source.abbr).subscribe((data: {}) => {
+      this.station = data;
       console.log(data);
     })
   }
