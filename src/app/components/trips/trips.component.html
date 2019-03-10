@@ -1,0 +1,67 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="outer-container">
+  <header>
+	  <mat-toolbar>
+	    <span><a href="/">BART</a></span>
+	    <span class="fill-remaining-space"></span>
+	    <nav class="mr-auto p-2 align-items-end">
+	      <a href="/stations">Stations | </a> 
+	      <a href="/trips">Trips</a> 
+	    </nav>
+	  </mat-toolbar>
+  </header>
+
+  <div class="container">
+  	<section class="content">
+  		<header>
+  			<h2>Trips</h2>
+  		</header>
+  		<div class="d-flex p-2">
+		  <mat-form-field class="mr-4">
+			  <mat-select placeholder="Source" [(ngModel)]="station.source">
+			    <mat-option>None</mat-option>
+			    <mat-option *ngFor="let stationItem of stations.station" [value]="stationItem">{{ stationItem.name }}</mat-option>
+			  </mat-select>
+		  </mat-form-field>
+		  <mat-form-field class="ml-4">
+			  <mat-select placeholder="Destination" [(ngModel)]="station.destination">
+			    <mat-option>None</mat-option>
+			    <mat-option *ngFor="let stationItem of stations.station" [value]="stationItem">{{ stationItem.name }}</mat-option>
+			  </mat-select>
+		  </mat-form-field>
+		  <div class="ml-auto p-2">
+		  	<button type="button" class="btn btn-secondary" (click)="getTrips()">Search Trips</button>
+		  </div>
+		</div>
+		<table class="table table-bordered" *ngIf="schedule != null && schedule.request != null">
+			<caption>Trips from {{ schedule.origin }} to {{ schedule.destination }}</caption>
+	        <thead>
+	          <tr>
+	          	<th scope="col">Departure Date</th>
+	            <th scope="col">Departure Time</th>
+	            <th scope="col">Arrival Date</th>
+	            <th scope="col">Arrival Time</th>
+	            <th scope="col">Fare ($)</th>
+	            <th scope="col">Trip Duration</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <tr *ngFor="let tripItem of schedule.request.trip">
+	          	<td>{{ tripItem['@origTimeDate'] }}</td>
+	            <td>{{ tripItem['@origTimeMin'] }}</td>
+	            <td>{{ tripItem['@destTimeDate'] }}</td>
+	            <td>{{ tripItem['@destTimeMin'] }}</td>
+	            <td>{{ tripItem.fares.fare['@amount'] }}</td>
+	            <td>{{ tripItem['@tripTime'] }} min</td>
+	          </tr>
+	        </tbody>
+        </table>
+	</section>
+  </div>
+
+  <footer class="footer">
+    <div class="d-flex justify-content-center">
+      <span class="btn btn-outline-customlight text-light">Copyright © 2019 - Designed and developed by <a class="text-light" href="https://github.com/varna-vincent" target="_blank">Varna Vincent</a></span>
+    </div>
+  </footer>
+</div>
