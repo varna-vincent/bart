@@ -7,14 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 	
-  visitCount: number;
+  visitCount: string;
 
   constructor() {}
 
   ngOnInit() {
-
   	this.visitCount = window.localStorage.getItem( 'visit_count');
-	window.localStorage.setItem( 'visit_count', this.visitCount === null ? '1' : parseInt(this.visitCount) + 1 + '');
+	  window.localStorage.setItem( 'visit_count', this.visitCount === null ? '1' : parseInt(this.visitCount) + 1 + '');
   }
 
 }

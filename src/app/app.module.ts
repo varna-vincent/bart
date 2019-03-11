@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { HomeComponent } from './components/home/home.component';
 import { StationsComponent } from './components/stations/stations.component';
 import { TripsComponent } from './components/trips/trips.component';
+import { CountdownComponent } from './components/countdown/countdown.component';
 
 
 
@@ -23,7 +24,8 @@ import { TripsComponent } from './components/trips/trips.component';
     RoutingComponents,
     HomeComponent,
     StationsComponent,
-    TripsComponent
+    TripsComponent,
+    CountdownComponent
   ],
   imports: [
     BrowserModule,

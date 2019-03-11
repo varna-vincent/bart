@@ -34,7 +34,7 @@
 		  </div>
 		</div>
 		<article class="container-fluid d-flex flex-row p-2 text-dark">
-			<aside class="pt-2 pb-2 mt-2" *ngIf="station != null && station.north_routes != null">
+			<aside class="w-25 pt-2 pb-2 mt-2" *ngIf="station != null && station.north_routes != null">
 				<h6 class="text-left mb-4">Source Station Info</h6>
 				<div class="text-left">Name - <span>{{ station.name }}</span></div>
 				<div class="text-left">Abbr - <span>{{ station.abbr }}</span></div>
@@ -45,29 +45,35 @@
 				<div class="text-left">North routes - <span *ngFor="let northRoute of station.north_routes.route" class="pl-1 pr-2"> {{ northRoute }} </span></div>
 				<div class="text-left">South routes - <span *ngFor="let southRoute of station.south_routes.route" class="pl-1 pr-2"> {{ southRoute }} </span></div>
 			</aside>
-			<table class="table table-bordered" *ngIf="schedule != null && schedule.request != null">
-				<caption><h6 class="text-dark">Trips from {{ schedule.origin }} to {{ schedule.destination }}</h6></caption>
-		        <thead>
-		          <tr>
-		          	<th scope="col">Departure Date</th>
-		            <th scope="col">Departure Time</th>
-		            <th scope="col">Arrival Date</th>
-		            <th scope="col">Arrival Time</th>
-		            <th scope="col">Fare ($)</th>
-		            <th scope="col">Trip Duration</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		          <tr *ngFor="let tripItem of schedule.request.trip">
-		          	<td>{{ tripItem['@origTimeDate'] }}</td>
-		            <td>{{ tripItem['@origTimeMin'] }}</td>
-		            <td>{{ tripItem['@destTimeDate'] }}</td>
-		            <td>{{ tripItem['@destTimeMin'] }}</td>
-		            <td>{{ tripItem['@fare'] }}</td>
-		            <td>{{ tripItem['@tripTime'] }} min</td>
-		          </tr>
-		        </tbody>
-	        </table>
+	        <div class="w-75" *ngIf="schedule != null && schedule.request != null">
+				<table class="table table-bordered">
+					<caption><h6 class="text-dark">Trips from {{ schedule.origin }} to {{ schedule.destination }}</h6></caption>
+			        <thead>
+			          <tr>
+			          	<th scope="col">Departure Date</th>
+			            <th scope="col">Departure Time</th>
+			            <th scope="col">Arrival Date</th>
+			            <th scope="col">Arrival Time</th>
+			            <th scope="col">Fare ($)</th>
+			            <th scope="col">Trip Duration</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <tr *ngFor="let tripItem of schedule.request.trip">
+			          	<td>{{ tripItem['@origTimeDate'] }}</td>
+			            <td>{{ tripItem['@origTimeMin'] }}</td>
+			            <td>{{ tripItem['@destTimeDate'] }}</td>
+			            <td>{{ tripItem['@destTimeMin'] }}</td>
+			            <td>{{ tripItem['@fare'] }}</td>
+			            <td>{{ tripItem['@tripTime'] }} min</td>
+			          </tr>
+			        </tbody>
+		        </table>
+		        <div class="mt-4">
+			        <h6 class="text-dark text-left float-left"> Next train leaves in </h6>
+			        <app-countdown trainArrivalTime="{{ schedule.request.trip[0]['@origTimeMin'] }}"></app-countdown>
+		        </div>
+	        </div>
 		</article>
 	</section>
   </div>

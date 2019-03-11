@@ -10,7 +10,7 @@ import { TripsService } from './trips.service';
 
 export class TripsComponent implements OnInit {
 	
-  @Input() stationsSelected = { source: {}, destination: {} }
+  @Input() stationsSelected = { source: { abbr: '' }, destination: { abbr: '' } }
 
   public stations: any = [];
   public station: any = [];
