@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   	this.visitCount = window.localStorage.getItem( 'visit_count');
+    console.log(this.visitCount);
 	  window.localStorage.setItem( 'visit_count', this.visitCount === null ? '1' : parseInt(this.visitCount) + 1 + '');
   }
 

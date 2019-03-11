@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StationsService } from './../stations/stations.service';
+import { CountdownService } from './../countdown/countdown.service';
 import { TripsService } from './trips.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class TripsComponent implements OnInit {
   public schedule: any = [];
   intervalId: number;
 
-  constructor(private stationsService: StationsService, private tripsService: TripsService) {} 
+  constructor(private stationsService: StationsService, private tripsService: TripsService, private countdownService: CountdownService) {} 
 
   ngOnInit() {
   	this.loadStations();
@@ -39,6 +40,7 @@ export class TripsComponent implements OnInit {
     if(source && source.abbr && dest && dest.abbr && source.abbr !== dest.abbr) {
       return this.tripsService.getTrips(source.abbr, dest.abbr).subscribe((data: {}) => {
         this.schedule = data;
+        this.countdownService.initiateTimer(this.schedule.request.trip[0]['@origTimeMin']);
         console.log(data);
       })
     }
