@@ -73,6 +73,12 @@
 			        <h6 class="text-dark text-left float-left"> Next train leaves in </h6>
 			        <app-countdown trainArrivalTime="{{ schedule.request.trip[0]['@origTimeMin'] }}"></app-countdown>
 		        </div>
+		        <div class="mt-4">
+			        <h6 class="text-dark text-left"> Directions </h6>
+			        <agm-map [latitude]="lat" [longitude]="lng">
+					  <agm-direction [origin]="origin" [destination]="destination"></agm-direction>
+					</agm-map>
+		        </div>
 	        </div>
 		</article>
 	</section>

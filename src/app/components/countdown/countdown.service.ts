@@ -19,6 +19,7 @@ export class CountdownService {
   	clearInterval(this.secInterval);
 
 	trainArrivalTime = moment(trainArrivalTime, "hh:mm a");
+	console.log(trainArrivalTime);
 	let now = moment.now();
 	let duration = moment.duration(trainArrivalTime.diff(now));
 	console.log(duration);
