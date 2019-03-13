@@ -21,8 +21,8 @@ export class TripsComponent implements OnInit {
   public source: any = {};
   public dest: any = {};
 
-  public origin: any;
-  public destination: any;
+  public origin: any = { lat: 37.765062, lng: -122.419694 };
+  public destination: any = { lat: 37.803768, lng: -122.271450 };
 
   intervalId: number;
 
@@ -61,8 +61,8 @@ export class TripsComponent implements OnInit {
 
   // Get source station info
   getStationInfo() {
-    if(this.source && this.source.abbr) {
-      return this.stationsService.getStation(this.source.abbr).subscribe((data: {}) => {
+    if(this.stationsSelected.source && this.stationsSelected.source.abbr) {
+      return this.stationsService.getStation(this.stationsSelected.source.abbr).subscribe((data: {}) => {
         this.station = data;
         console.log(data);
       })
